@@ -1,47 +1,44 @@
-package com.ty.crud;
+package com.postgreSql.crud;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Save {
+public class CreateTable {
 	public static void main(String[] args) {
 		
 		String url = "jdbc:postgresql://localhost:5432/mydb";
 		String username = "postgres";
 		String password = "root";
+		String driver = "org.postgresql.Driver";
 		
-		String query = "insert into student values(104,'nishant','nishant@gmail.com',8998765555)";
+		String query = "CREATE TABLE student("
+				+ "sid INTEGER PRIMARY KEY,"
+				+ "sname VARCHAR(20) NOT NULL,"
+				+ "semail VARCHAR(25) NOT NULL,"
+				+ "sphone VARCHAR(10) NOT NULL UNIQUE )";
+				
 		
 		try {
-			
-			// step 1 : Load the driver
-			
-			Class.forName("org.postgresql.Driver");
-			System.out.println("Driver loaded");
-			
-			// step 2 : Establish a connection
+			Class.forName(driver);
+			System.out.println("driver loaded");
 			
 			Connection con = DriverManager.getConnection(url, username, password);
+			System.out.println("connection created");
 			
-			// step 3 : create a statement
-			
-			Statement stm =  con.createStatement();
-			
-			// step 4 : execute a query
+			Statement stm = con.createStatement();
+			System.out.println("statement created");
 			
 			stm.execute(query);
-			
 			System.out.println("query executed");
 			
 			con.close();
-			
+			System.out.println("connection closed");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}
-}
+}	

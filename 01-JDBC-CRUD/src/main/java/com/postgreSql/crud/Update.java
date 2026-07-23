@@ -1,4 +1,4 @@
-package com.ty.crud;
+package com.postgreSql.crud;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,7 +13,7 @@ public class Update {
 		String username = "postgres";
 		String password = "root";
 		
-		String query = "UPDATE student SET sName=aman where sid=101";
+		String query = "UPDATE student SET sname='Krishna' where sid=101";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
