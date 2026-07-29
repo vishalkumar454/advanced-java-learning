@@ -7,6 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>Welcome to index.jsp</h2>
+	<h2>List of animals</h2>
+	<hr>
+	<h3>Lion</h3>
+	<h3>Tiger</h3>
+	<h3>Elephant</h3>
+	<h3>Hippopotamus</h3>
+	<h3>Dog</h3>
 </body>
 </html>

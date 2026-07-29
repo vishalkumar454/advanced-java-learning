@@ -7,6 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>Welcome to index.jsp</h2>
+	<body>
+	<h2>List of birds</h2>
+	<hr>
+	<h3>peacock</h3>
+	<h3>pigeon</h3>
+	<h3>parrot</h3>
+	<h3>sparrow</h3>
+	<h3>duck</h3>
+</body>
 </body>
 </html>

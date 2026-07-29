@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>Welcome to index.jsp</h2>
+	<h2>welcome to pageA</h2>
+	<%@ include file="animals.jsp" %>
+	<%@ include file="birds.jsp" %>
 </body>
 </html>
