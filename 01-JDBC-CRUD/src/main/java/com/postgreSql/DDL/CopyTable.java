@@ -9,7 +9,10 @@ public class CopyTable {
 	public static void main(String[] args) {
 		
 		String url = "jdbc:postgresql://localhost:5432/mydb?user=postgres&password=root";
-		String query = "CREATE TABLE emp AS SELECT * FROM employee";
+		String query = "CREATE TABLE emp "
+						+ "AS "
+						+ "SELECT * "
+						+ "FROM employee";
 				
 		try(Connection con = DriverManager.getConnection(url)) {
 			Class.forName("org.postgresql.Driver");
