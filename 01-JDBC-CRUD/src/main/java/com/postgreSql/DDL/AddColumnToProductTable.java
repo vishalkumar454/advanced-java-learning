@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public class AddColumnToProductTable {
 
-public static void main(String[] args) {
+	public static void main(String[] args) {
 	
 		String url = "jdbc:postgresql://localhost:5432/mydb";
 		String username = "postgres";
