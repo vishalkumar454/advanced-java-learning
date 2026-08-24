@@ -10,7 +10,8 @@ public class RetriveParticularData {
 
 	public static void main(String[] args) {
 
-		String url = "jdbc:postgresql://localhost:5432/mydb?user=postgres&password=root";
+		String url = "jdbc:postgresql://localhost:5432/mydb"
+				+ "?user=postgres&password=root";
 		String query = ""
 				+ "SELECT * "
 				+ "FROM emp "
