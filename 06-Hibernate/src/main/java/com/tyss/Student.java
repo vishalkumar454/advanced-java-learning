@@ -1,14 +1,19 @@
 package com.tyss;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+//@Table(name = "student")
 public class Student {
 	
 	@Id
 	private int id;
+	@Column(length = 5)
 	private String name;
+	@Column(unique = true, nullable = false)
 	private int age;
 	
 	public Student() {
