@@ -39,6 +39,7 @@ public class EmployeeRepository {
 	}
 	
 	public Employee updateEmployeeSalaryWithHike10(int id) {
+		
 		Employee employee = findEmployee(id);
 		double existingSalary = employee.getSalary();
 		double updatedSalary = existingSalary + (10.0/100 * existingSalary);
