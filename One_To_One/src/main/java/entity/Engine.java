@@ -43,8 +43,9 @@ public class Engine {
 		return hp;
 	}
 
-	public void setHp(int hp) {
+	public Engine setHp(int hp) {
 		this.hp = hp;
+		return this;
 	}
 
 	@Override

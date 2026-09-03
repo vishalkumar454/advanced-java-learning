@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Car {
@@ -12,7 +13,7 @@ public class Car {
 	private int id;
 	private String brand;
 	private double price;
-	
+	@OneToOne
 	private Engine engine;
 	
 	public Car() {
