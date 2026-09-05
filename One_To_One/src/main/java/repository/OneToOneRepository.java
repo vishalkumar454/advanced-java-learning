@@ -13,99 +13,121 @@ import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 
 public class OneToOneRepository {
-	
+
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("vishal");
 	EntityManager em = emf.createEntityManager();
 	EntityTransaction et = em.getTransaction();
-	
+
 	public Car findCarById(int id) {
 		Car car = em.find(Car.class, id);
-		if(car != null) {
+		if (car != null) {
 			Engine engine = car.getEngine();
 			System.out.println(engine);
 			return car;
-		}else {
+		} else {
 			throw new CarNotFoundException("Car not found");
 		}
 	}
-	
+
 	public Engine findEngineById(int id) {
+
 		Engine engine = em.find(Engine.class, id);
-		
-		if(engine != null) {
-			return engine;
-		}else {
+
+		if (engine == null) {
 			throw new EngineNotFoundException("Engine Not Found Exception");
-		}
-	}
-	
-	public List<Car> findAllCar() {
-		String q1 = "select car from Car car ";
-		String q2 = "select engine from Engine engine";
-		
-		Query query1 = em.createQuery(q1);
-		Query query2 = em.createQuery(q2);
-		System.out.println(query2.getResultList());
-		return query1.getResultList();
-	}
-//	
-//	public List<Engine> findAllEngine() {
-//		String q = "select engine from Engine engine";
-//		Query query = em.createQuery(q);
-//		return query.getResultList();
-//	}
-	
-	public void updateCarPrice(int id, double price,int hp) {
-		Car car = findCarById(id);
-		Engine engine = car.getEngine().setHp(hp);
-		car.setPrice(price);
-		try {
-			et.begin();
-			em.merge(engine);
-			em.merge(car);
-			et.commit();
-			System.out.println("car price updated");
 			
+		} 
+		
+		return engine;
+
+	}
+
+	public void findAllCar() {
+		String q1 = "select car from Car car ";
+
+		Query query1 = em.createQuery(q1);
+		List<Car> list = query1.getResultList();
+
+		for (Car car : list) {
+			Engine engine = car.getEngine();
+			System.out.println(engine);
+			System.out.println(car);
+		}
+	}
+
+	public void updateCarPrice(int id, double price, int hp) {
+		et.begin();
+		try {
+
+			Car car = em.find(Car.class, id);
+
+			if (car != null) {
+
+				Engine engine = car.getEngine();
+				engine.setHp(hp);
+				car.setPrice(price);
+				et.commit();
+				System.out.println("car and engine got updated..");
+			} else {
+				throw new CarNotFoundException("car not found");
+			}
+
 		} catch (Exception e) {
 			et.rollback();
 		}
+
 	}
-	
+
 	public void updateEngineHp(int id, int hp) {
-		Engine engine = findEngineById(id);
-		engine.setHp(hp);
-		
+
+		et.begin();
+
 		try {
-			et.begin();
-			em.merge(engine);
-			et.commit();
-			System.out.println("HP of engine updated");
+
+			Engine engine = findEngineById(id);
+
+			if (engine != null) {
+				engine.setHp(hp);
+				et.commit();
+				System.out.println("Engine HP updated successfully.");
+			} else {
+				et.rollback();
+				System.out.println("engine not found");
+			}
+
 		} catch (Exception e) {
 			et.rollback();
 		}
-		
+
 	}
-	
+
 	public void removeCar(int id) {
-		Car car = findCarById(id);
-		Engine engine = car.getEngine();
-		
+
+		et.begin();
+
 		try {
-			et.begin();
-			em.remove(car);
-			em.remove(engine);
-			et.commit();
-			System.out.println("car removed");
+
+			Car car = findCarById(id);
+
+			if (car != null) {
+				Engine engine = car.getEngine();
+				em.remove(car);
+				em.remove(engine);
+				et.commit();
+				System.out.println("car and engine get removed");
+			} else {
+				throw new CarNotFoundException("CAR NOT FOUND");
+			}
 		} catch (Exception e) {
 			et.rollback();
 		}
 	}
-	
+
 	public void addCar(String type, int hp, String brand, double price) {
-		
-		Engine engine = new Engine(type,hp);
-		Car car = new Car(brand, price, engine );
-		
+
+		Engine engine = new Engine(type, hp);
+		Car car = new Car(brand, price, engine);
+
 		try {
 			et.begin();
 			em.persist(engine);

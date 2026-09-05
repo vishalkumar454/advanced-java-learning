@@ -1,19 +1,22 @@
 package entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.SequenceGenerator;
 
 @Entity
 public class Car {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO,generator = "id")
+	@SequenceGenerator(name = "id", sequenceName = "engine_id",initialValue = 101, allocationSize = 1)
 	private int id;
 	private String brand;
 	private double price;
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	private Engine engine;
 	
 	public Car() {

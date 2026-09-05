@@ -43,17 +43,13 @@ public class Engine {
 		return hp;
 	}
 
-	public Engine setHp(int hp) {
+	public void setHp(int hp) {
 		this.hp = hp;
-		return this;
 	}
 
 	@Override
 	public String toString() {
 		return "Engine [id=" + id + ", type=" + type + ", hp=" + hp + "]";
 	}
-	
-	
-	
-	
+
 }

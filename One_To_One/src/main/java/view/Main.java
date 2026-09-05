@@ -4,6 +4,11 @@ import java.util.Scanner;
 
 import entity.Car;
 import entity.Engine;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.Query;
 import repository.OneToOneRepository;
 
 public class Main {
@@ -11,6 +16,7 @@ public class Main {
 	static OneToOneRepository oneToOneRepository = new OneToOneRepository();
 
 	public static void main(String[] args) {
+		
 
 		Scanner sc = new Scanner(System.in);
 
@@ -34,7 +40,7 @@ public class Main {
 			break;
 
 		case 3:
-			System.out.println(oneToOneRepository.findAllCar());
+			oneToOneRepository.findAllCar();
 			break;
 
 		case 5:
@@ -54,16 +60,16 @@ public class Main {
 
 			break;
 
-//		case 6:
-//			System.out.print("Enter id : ");
-//			id = sc.nextInt();
-//			System.out.println();
-//			System.out.print("Enter updated hp : ");
-//			int hp = sc.nextInt();
-//
-//			oneToOneRepository.updateEngineHp(id, hp);
-//
-//			break;
+		case 6:
+			System.out.print("Enter id : ");
+			id = sc.nextInt();
+			System.out.println();
+			System.out.print("Enter updated hp : ");
+			hp = sc.nextInt();
+
+			oneToOneRepository.updateEngineHp(id, hp);
+
+			break;
 
 		case 7:
 			System.out.print("Enter id : ");
