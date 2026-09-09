@@ -16,7 +16,7 @@ public class Account {
 
 	public Account() {
 	}
-
+	
 	public Account(long ac_no, String accoutHolderName) {
 		this.ac_no = ac_no;
 		this.accoutHolderName = accoutHolderName;

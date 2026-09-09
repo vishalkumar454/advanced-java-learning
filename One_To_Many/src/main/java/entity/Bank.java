@@ -3,6 +3,7 @@ package entity;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,16 +16,16 @@ public class Bank {
 	private int id;
 	private String name;
 	private String ifsc;
-	@OneToMany
+	@OneToMany(fetch = FetchType.LAZY)
 	private List<Account> accounts;
 	public Bank() {
 		
 	}
 	
-	public Bank(String name, String ifsc,List<Account> accounts) {
+	public Bank(String name, String ifsc) {
 		this.name = name;
 		this.ifsc = ifsc;
-		this.accounts = accounts;
+		
 	}
 	public int getId() {
 		return id;
@@ -55,7 +56,7 @@ public class Bank {
 
 	@Override
 	public String toString() {
-		return "Bank [id=" + id + ", name=" + name + ", ifsc=" + ifsc + ", accounts=" + accounts + "]";
+		return "Bank [id=" + id + ", name=" + name + ", ifsc=" + ifsc + " ]";
 	}
 	
 	
